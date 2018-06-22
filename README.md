@@ -14,7 +14,7 @@ composer require upaid/sms-verification
 Or by adding the following line to the `require` section of your Laravel app's `composer.json` file:
 ```javascript
     "require": {
-        "upaid/sms-verification": "1.*"
+        "upaid/sms-verification": "0.1.*"
     }
 ```
 Run `composer update upaid/sms-verification` to install the package.
