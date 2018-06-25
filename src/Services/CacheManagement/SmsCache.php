@@ -38,7 +38,7 @@ class SmsCache implements ContextualKeysInterface, SmsStorage
     public function __construct(Cache $cache, Config $config)
     {
         $this->cache = $cache;
-        $this->lifetime = $config->get('sms_verification.cacheLifeTime');
+        $this->lifetime = $config->get('sms_verification.cache_life_time');
     }
 
     /********************************************** Checks counter cache **********************************************/

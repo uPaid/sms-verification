@@ -24,7 +24,7 @@ class LimitedResendManager extends BaseManager implements SmsManagerInterface
                                 StatusMapper $statusMapper, Config $config)
     {
         parent::__construct($smsStorage, $smsCodeGenerator, $messageComposer, $messageSender, $statusMapper, $config);
-        $this->sendAgainLimit = $config->get('sms_verification.sendAgainLimit');
+        $this->sendAgainLimit = $config->get('sms_verification.send_again_limit');
     }
 
     public function sendSmsAgain(string $action, string $phone, array $messageTranslationPlaceholders = []): string
@@ -67,7 +67,7 @@ class LimitedResendManager extends BaseManager implements SmsManagerInterface
 
     protected function overLimit($action, $phone): string
     {
-        $this->executeCallback($this->config->get('sms_verification.callbacks.overLimit'), $action, $phone);
+        $this->executeCallback($this->config->get('sms_verification.callbacks.over_limit'), $action, $phone);
 
         return $this->statusMapper->map(StatusMapper::TOO_MANY_SMS_ATTEMPTS);
     }

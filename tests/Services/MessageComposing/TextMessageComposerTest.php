@@ -22,7 +22,7 @@ class TextMessageComposerTest extends \PHPUnit\Framework\TestCase
     public function it_fetches_translation_for_supported_key()
     {
         $this->composerCallback->shouldReceive('__invoke')->once()->andReturn('some translation');
-        $this->config->shouldReceive('get')->with('sms_verification.callbacks.messageComposer')->once()->andReturn($this->composerCallback);
+        $this->config->shouldReceive('get')->with('sms_verification.callbacks.message_composer')->once()->andReturn($this->composerCallback);
         $this->config->shouldReceive('get')->with('sms_verification.translations')->once()->andReturn([]);
 
         $composer = new TextMessageComposer($this->config);

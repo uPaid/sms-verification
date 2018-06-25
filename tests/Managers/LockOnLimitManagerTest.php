@@ -30,8 +30,8 @@ class LockOnLimitManagerTest extends \PHPUnit\Framework\TestCase
         $this->config = Mockery::mock(Repository::class);
         $this->statusMapper = Mockery::mock(StatusMapper::class);
 
-        $this->config->shouldReceive('get')->with('sms_verification.checksLimit')->once()->andReturn(3);
-        $this->config->shouldReceive('get')->with('sms_verification.smsCodeLength')->once()->andReturn(4);
+        $this->config->shouldReceive('get')->with('sms_verification.checks_limit')->once()->andReturn(3);
+        $this->config->shouldReceive('get')->with('sms_verification.sms_code_length')->once()->andReturn(4);
         $this->config->shouldReceive('get')->with('sms_verification.actions')->once()->andReturn([\Upaid\SmsVerification\Components\Actions::ACTION_EXAMPLE]);
     }
 
@@ -47,7 +47,7 @@ class LockOnLimitManagerTest extends \PHPUnit\Framework\TestCase
         $lockManagerCallback = Mockery::mock(\Upaid\SmsVerification\Components\Callbacks\CreateLockManager::class);
         $lockManagerCallback->shouldReceive('__invoke')->once()->andReturn($lockManager);
 
-        $this->config->shouldReceive('get')->with('sms_verification.callbacks.lockManager')->once()->andReturn($lockManagerCallback);
+        $this->config->shouldReceive('get')->with('sms_verification.callbacks.lock_manager')->once()->andReturn($lockManagerCallback);
 
         $this->statusMapper->shouldReceive('map')->once()->with(StatusMapper::TOO_MANY_SMS_ATTEMPTS)->andReturn(StatusMapper::TOO_MANY_SMS_ATTEMPTS);
 
@@ -65,7 +65,7 @@ class LockOnLimitManagerTest extends \PHPUnit\Framework\TestCase
 
         $lockManagerCallback = Mockery::mock(\Upaid\SmsVerification\Components\Callbacks\CreateLockManager::class);
         $lockManagerCallback->shouldReceive('__invoke')->once()->andReturn($lockManager);
-        $this->config->shouldReceive('get')->with('sms_verification.callbacks.lockManager')->once()->andReturn($lockManagerCallback);
+        $this->config->shouldReceive('get')->with('sms_verification.callbacks.lock_manager')->once()->andReturn($lockManagerCallback);
 
         $this->smsStorage->shouldNotReceive('setContext');
 
@@ -93,7 +93,7 @@ class LockOnLimitManagerTest extends \PHPUnit\Framework\TestCase
 
         $lockManagerCallback = Mockery::mock(\Upaid\SmsVerification\Components\Callbacks\CreateLockManager::class);
         $lockManagerCallback->shouldReceive('__invoke')->once()->andReturn($lockManager);
-        $this->config->shouldReceive('get')->with('sms_verification.callbacks.lockManager')->once()->andReturn($lockManagerCallback);
+        $this->config->shouldReceive('get')->with('sms_verification.callbacks.lock_manager')->once()->andReturn($lockManagerCallback);
 
 
         $this->assertEquals('TOO_MANY_SMS_ATTEMPTS', $this->getManager()->checkSmsCode('example', 'PHONE',4673));

@@ -80,7 +80,7 @@ class SmsCodeVerificationServiceProvider extends ServiceProvider
 
     protected function shouldUseDummyServices(): bool
     {
-        return $this->executeCallback(config('sms_verification.callbacks.dummyServices'));
+        return $this->executeCallback(config('sms_verification.callbacks.dummy_services'), config('sms_verification.dummy_services_environments'));
     }
 
 }

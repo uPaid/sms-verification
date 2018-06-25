@@ -30,7 +30,7 @@ abstract class BaseCacheLockManager implements LockManagerInterface
         $this->cache = $cache;
         $this->statusMapper = $statusMapper;
 
-        $this->lockTime = $config->get('sms_verification.lockLifeTime');
+        $this->lockTime = $config->get('sms_verification.lock_life_time');
     }
 
     public function setLock(string $action, string $id): string

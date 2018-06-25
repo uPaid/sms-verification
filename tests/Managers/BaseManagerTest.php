@@ -31,8 +31,8 @@ class BaseManagerTest extends \PHPUnit\Framework\TestCase
         $this->smsStorage->shouldReceive('setContext')->once()->with('example');
         $this->smsStorage->shouldReceive('setIdentifier')->once()->with('PHONE');
 
-        $this->config->shouldReceive('get')->with('sms_verification.checksLimit')->once()->andReturn(3);
-        $this->config->shouldReceive('get')->with('sms_verification.smsCodeLength')->once()->andReturn(4);
+        $this->config->shouldReceive('get')->with('sms_verification.checks_limit')->once()->andReturn(3);
+        $this->config->shouldReceive('get')->with('sms_verification.sms_code_length')->once()->andReturn(4);
         $this->config->shouldReceive('get')->with('sms_verification.actions')->once()->andReturn([\Upaid\SmsVerification\Components\Actions::ACTION_EXAMPLE]);
     }
 

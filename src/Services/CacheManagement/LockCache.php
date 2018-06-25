@@ -24,7 +24,7 @@ class LockCache implements LockStorage
     public function __construct(Cache $cache, Config $config)
     {
         $this->cache = $cache;
-        $this->lifetime = $config->get('sms_verification.lockLifeTime');
+        $this->lifetime = $config->get('sms_verification.lock_life_time');
     }
 
     public function lock(): void

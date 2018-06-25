@@ -69,8 +69,8 @@ abstract class BaseManager implements SmsManagerInterface
         $this->statusMapper = $statusMapper;
         $this->config = $config;
 
-        $this->checksLimit = $config->get('sms_verification.checksLimit');
-        $this->smsCodeLength = $config->get('sms_verification.smsCodeLength');
+        $this->checksLimit = $config->get('sms_verification.checks_limit');
+        $this->smsCodeLength = $config->get('sms_verification.sms_code_length');
         $this->supportedActions = $config->get('sms_verification.actions');
     }
 

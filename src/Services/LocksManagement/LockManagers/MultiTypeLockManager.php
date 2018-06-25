@@ -20,7 +20,7 @@ class MultiTypeLockManager extends BaseCacheLockManager implements LockManagerIn
     {
         parent::__construct($cache, $statusMapper, $config);
 
-        $this->supportedLockTypes = $config->get('sms_verification.multiLockTypes');
+        $this->supportedLockTypes = $config->get('sms_verification.multi_lock_types');
     }
 
     public function setLock(string $action, string $id): string

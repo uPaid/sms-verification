@@ -28,8 +28,8 @@ class UnlimitedResendManagerTest extends \PHPUnit\Framework\TestCase
         $this->config = Mockery::mock(Repository::class);
         $this->statusMapper = Mockery::mock(StatusMapper::class);
 
-        $this->config->shouldReceive('get')->with('sms_verification.checksLimit')->once()->andReturn(3);
-        $this->config->shouldReceive('get')->with('sms_verification.smsCodeLength')->once()->andReturn(6);
+        $this->config->shouldReceive('get')->with('sms_verification.checks_limit')->once()->andReturn(3);
+        $this->config->shouldReceive('get')->with('sms_verification.sms_code_length')->once()->andReturn(6);
         $this->config->shouldReceive('get')->with('sms_verification.actions')->once()->andReturn([\Upaid\SmsVerification\Components\Actions::ACTION_EXAMPLE]);
     }
 

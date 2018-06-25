@@ -18,7 +18,7 @@ class SmsCacheTest extends \PHPUnit\Framework\TestCase
         parent::setUp();
 
         $this->config = Mockery::mock(Illuminate\Contracts\Config\Repository::class);
-        $this->config->shouldReceive('get')->with('sms_verification.cacheLifeTime')->once()->andReturn(15);
+        $this->config->shouldReceive('get')->with('sms_verification.cache_life_time')->once()->andReturn(15);
 
         $this->cache = Mockery::mock(Illuminate\Contracts\Cache\Repository::class);
     }

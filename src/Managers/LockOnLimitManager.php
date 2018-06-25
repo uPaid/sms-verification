@@ -45,7 +45,7 @@ class LockOnLimitManager extends BaseManager implements SmsManagerInterface
 
     protected function makeLockManager(string $action): LockManagerInterface
     {
-        return $this->executeCallback($this->config->get('sms_verification.callbacks.lockManager'), $action, ['method' => __FUNCTION__, 'class' => __CLASS__]);
+        return $this->executeCallback($this->config->get('sms_verification.callbacks.lock_manager'), $action, ['method' => __FUNCTION__, 'class' => __CLASS__]);
     }
 
 }

@@ -52,19 +52,20 @@ Below is a list of configurable options:
 * *log_message* - templates used to log sent messages (if logging is configured)
 * *status_map* - used for customising returned statuses
 * *status_placeholders* - used for customizing the format of returned information about sent SMS number/count (if returned from SMS API)
-* *multiLockTypes* - determines the list of available lock types used at *MultiTypeLockManager* class
-* *cacheLifeTime* - how long items are stored in cache 
-* *lockLifeTime* - lock duration (used in *BaseCacheLockManager*, not tightly related to the core functionality, but important if you use locks)
-* *smsCodeLength* - length of generated SMS verification code
-* *checksLimit* - max number of failed check attempts for one SMS code; reaching this limit may cause creating a lock or resending SMS code, depending on which manager you use
-* *sendAgainLimit* - defines how many times *sendSmsAgain* feature can be used in given context. Used in *LimitedResendManager* class
+* *multi_lock_types* - determines the list of available lock types used at *MultiTypeLockManager* class
+* *cache_life_time* - how long items are stored in cache 
+* *lock_life_time* - lock duration (used in *BaseCacheLockManager*, not tightly related to the core functionality, but important if you use locks)
+* *sms_code_length* - length of generated SMS verification code
+* *checks_limit* - max number of failed check attempts for one SMS code; reaching this limit may cause creating a lock or resending SMS code, depending on which manager you use
+* *send_again_limit* - defines how many times *sendSmsAgain* feature can be used in given context. Used in *LimitedResendManager* class
 * *actions* - list of available actions. Class *Components/Actions* should be overridden and extended in your project
 * *translations* - translation configuration. If you use Laravel translator (*Components/Callbacks/MessageComposer*) pass to this parameter array with format [action => translation_key]. Also you can override *MessageComposer* implementation in your project
+* *dummy_services_environments* - list of environments for which will be used dummy sender
 * *callbacks* - the list of configurable callbacks. You can define your own callback classes by implementing method *__invoke*
-    * *dummyServices* - you have to pass callback class that makes a decision if a real SMS code should be generated and sent (or a dummy sender should be used, alternatively). Dummy sender logs the message without real sending (if logging is configured) 
+    * *dummy_services* - you have to pass callback class that makes a decision if a real SMS code should be generated and sent (or a dummy sender should be used, alternatively). Dummy sender logs the message without real sending (if logging is configured) 
     * *manager* - you have to pass callback that creates at instance of *SmsManagerInterface*
     * *log* - pass callback implementing logging
-    * *overLimit* - this callback is executed when reaching *sendAgainLimit* in *LimitedResendManager*
-    * *messageComposer* - responsible for composing and translating SMS message content 
-    * *lockManager* - callback creates an instance of *LockManagerInterface* that can be used to lock user in cache or in DB, or to lock only some of the features (like password reset or email change)
+    * *over_limit* - this callback is executed when reaching *send_again_limit* in *LimitedResendManager*
+    * *message_composer* - responsible for composing and translating SMS message content 
+    * *lock_manager* - callback creates an instance of *LockManagerInterface* that can be used to lock user in cache or in DB, or to lock only some of the features (like password reset or email change)
     

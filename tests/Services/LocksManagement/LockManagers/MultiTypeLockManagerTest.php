@@ -16,8 +16,8 @@ class MultiTypeLockManagerTest extends \PHPUnit\Framework\TestCase
         parent::setUp();
         $this->lockStorage = Mockery::mock(LockStorage::class);
         $this->config = Mockery::mock(Illuminate\Contracts\Config\Repository::class);
-        $this->config->shouldReceive('get')->with('sms_verification.lockLifeTime')->once()->andReturn(15);
-        $this->config->shouldReceive('get')->with('sms_verification.multiLockTypes')->once()->andReturn([
+        $this->config->shouldReceive('get')->with('sms_verification.lock_life_time')->once()->andReturn(15);
+        $this->config->shouldReceive('get')->with('sms_verification.multi_lock_types')->once()->andReturn([
             \Upaid\SmsVerification\Components\Actions::ACTION_EXAMPLE => 'example',
             \Upaid\SmsVerification\Components\Actions::ACTION_EXAMPLE_2 => 'example_2'
         ]);

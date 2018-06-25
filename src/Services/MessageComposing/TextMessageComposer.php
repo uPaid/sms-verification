@@ -21,7 +21,7 @@ class TextMessageComposer implements MessageComposerInterface
 
     public function compose(string $action, string $code, array $translationPlaceholders = []): string
     {
-        $callback = $this->config->get('sms_verification.callbacks.messageComposer');
+        $callback = $this->config->get('sms_verification.callbacks.message_composer');
         $translationConfig = $this->config->get('sms_verification.translations');
         return $this->executeCallback($callback, $translationConfig, $action, $code, $translationPlaceholders);
     }

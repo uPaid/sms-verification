@@ -28,8 +28,8 @@ class LimitedResendManagerTest extends \PHPUnit\Framework\TestCase
         $this->config = Mockery::mock(Repository::class);
         $this->statusMapper = Mockery::mock(StatusMapper::class);
 
-        $this->config->shouldReceive('get')->with('sms_verification.checksLimit')->once()->andReturn(3);
-        $this->config->shouldReceive('get')->with('sms_verification.smsCodeLength')->once()->andReturn(6);
+        $this->config->shouldReceive('get')->with('sms_verification.checks_limit')->once()->andReturn(3);
+        $this->config->shouldReceive('get')->with('sms_verification.sms_code_length')->once()->andReturn(6);
         $this->config->shouldReceive('get')->with('sms_verification.actions')->once()->andReturn([\Upaid\SmsVerification\Components\Actions::ACTION_EXAMPLE]);
     }
 
@@ -41,7 +41,7 @@ class LimitedResendManagerTest extends \PHPUnit\Framework\TestCase
      */
     public function send_sms_again_method_resets_checks_counter_and_sends_another_sms_code_when_send_sms_again_limit_is_not_reached()
     {
-        $this->config->shouldReceive('get')->with('sms_verification.sendAgainLimit')->once()->andReturn(1);
+        $this->config->shouldReceive('get')->with('sms_verification.send_again_limit')->once()->andReturn(1);
 
         $this->smsStorage->shouldReceive('setContext')->once()->with('example');
         $this->smsStorage->shouldReceive('setIdentifier')->once()->with('PHONE');
@@ -63,8 +63,8 @@ class LimitedResendManagerTest extends \PHPUnit\Framework\TestCase
         $this->smsStorage->shouldReceive('setContext')->once()->with('example');
         $this->smsStorage->shouldReceive('setIdentifier')->once()->with('PHONE');
         $this->smsStorage->shouldReceive('getSendSmsAgainCounter')->once()->andReturn(1);
-        $this->config->shouldReceive('get')->once()->with('sms_verification.sendAgainLimit')->andReturn(1);
-        $this->config->shouldReceive('get')->once()->with('sms_verification.callbacks.overLimit')->andReturn(\Upaid\SmsVerification\Components\Callbacks\OverLimit::class);
+        $this->config->shouldReceive('get')->once()->with('sms_verification.send_again_limit')->andReturn(1);
+        $this->config->shouldReceive('get')->once()->with('sms_verification.callbacks.over_limit')->andReturn(\Upaid\SmsVerification\Components\Callbacks\OverLimit::class);
 
         $this->statusMapper->shouldReceive('map')->once()->with(StatusMapper::TOO_MANY_SMS_ATTEMPTS)->andReturn(StatusMapper::TOO_MANY_SMS_ATTEMPTS);
 
@@ -81,7 +81,7 @@ class LimitedResendManagerTest extends \PHPUnit\Framework\TestCase
     {
         $this->defineExpectationsForCheckSmsCodeMethod();
 
-        $this->config->shouldReceive('get')->once()->with('sms_verification.sendAgainLimit')->andReturn(1);
+        $this->config->shouldReceive('get')->once()->with('sms_verification.send_again_limit')->andReturn(1);
         $this->smsStorage->shouldReceive('getSendSmsAgainCounter')->once()->andReturn(0);
         $this->smsStorage->shouldReceive('resetChecksCounter')->once();
         $this->smsStorage->shouldReceive('incrementSendSmsAgainCounter')->once();
@@ -97,8 +97,8 @@ class LimitedResendManagerTest extends \PHPUnit\Framework\TestCase
     public function check_sms_code_method_invalidates_token_on_handling_reaching_failed_checks_limit_when_send_sms_again_limit_is_reached_and_token_is_present_in_arguments()
     {
         $this->defineExpectationsForCheckSmsCodeMethod();
-        $this->config->shouldReceive('get')->once()->with('sms_verification.sendAgainLimit')->andReturn(1);
-        $this->config->shouldReceive('get')->once()->with('sms_verification.callbacks.overLimit')->andReturn(\Upaid\SmsVerification\Components\Callbacks\OverLimit::class);
+        $this->config->shouldReceive('get')->once()->with('sms_verification.send_again_limit')->andReturn(1);
+        $this->config->shouldReceive('get')->once()->with('sms_verification.callbacks.over_limit')->andReturn(\Upaid\SmsVerification\Components\Callbacks\OverLimit::class);
 
         $this->smsStorage->shouldReceive('getSendSmsAgainCounter')->once()->andReturn(1);
 
@@ -114,8 +114,8 @@ class LimitedResendManagerTest extends \PHPUnit\Framework\TestCase
     public function check_sms_code_method_just_returns_TOO_MANY_SMS_ATTEMPTS_on_handling_reaching_failed_checks_limit_when_send_sms_again_limit_is_reached_and_token_is_not_present_in_arguments()
     {
         $this->defineExpectationsForCheckSmsCodeMethod();
-        $this->config->shouldReceive('get')->once()->with('sms_verification.sendAgainLimit')->andReturn(1);
-        $this->config->shouldReceive('get')->once()->with('sms_verification.callbacks.overLimit')->andReturn(\Upaid\SmsVerification\Components\Callbacks\OverLimit::class);
+        $this->config->shouldReceive('get')->once()->with('sms_verification.send_again_limit')->andReturn(1);
+        $this->config->shouldReceive('get')->once()->with('sms_verification.callbacks.over_limit')->andReturn(\Upaid\SmsVerification\Components\Callbacks\OverLimit::class);
 
         $this->smsStorage->shouldReceive('getSendSmsAgainCounter')->once()->andReturn(1);
 
