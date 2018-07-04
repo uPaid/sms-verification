@@ -8,10 +8,10 @@ class UseDummyServices
 {
     /**
      * @param array $dummyServicesEnvironments
-     * @param boolean $forceUserRealServices
+     * @param bool $forceUserRealServices
      * @return bool
      */
-    public function __invoke(array $dummyServicesEnvironments, boolean $forceUserRealServices): bool
+    public function __invoke(array $dummyServicesEnvironments, bool $forceUserRealServices): bool
     {
         if ($forceUserRealServices === true) {
             return false;
