@@ -40,6 +40,7 @@ return [
         \Upaid\SmsVerification\Components\Actions::ACTION_EXAMPLE => ''
     ],
     'dummy_services_environments' => ['alfa'],
+    'force_use_real_services' => false,
     'callbacks' => [
         'dummy_services' => \Upaid\SmsVerification\Components\Callbacks\UseDummyServices::class,
         'manager' => \Upaid\SmsVerification\Components\Callbacks\CreateLockOnLimitManager::class,

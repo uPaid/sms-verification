@@ -61,6 +61,7 @@ Below is a list of configurable options:
 * *actions* - list of available actions. Class *Components/Actions* should be overridden and extended in your project
 * *translations* - translation configuration. If you use Laravel translator (*Components/Callbacks/MessageComposer*) pass to this parameter array with format [action => translation_key]. Also you can override *MessageComposer* implementation in your project
 * *dummy_services_environments* - list of environments for which will be used dummy sender
+* *force_use_real_services* - if true send real sms even if environment is at the list of *dummy_services_environments*
 * *callbacks* - the list of configurable callbacks. You can define your own callback classes by implementing method *__invoke*
     * *dummy_services* - you have to pass callback class that makes a decision if a real SMS code should be generated and sent (or a dummy sender should be used, alternatively). Dummy sender logs the message without real sending (if logging is configured) 
     * *manager* - you have to pass callback that creates at instance of *SmsManagerInterface*

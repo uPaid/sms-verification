@@ -2,8 +2,13 @@
 
 namespace Upaid\SmsVerification\Providers;
 
+use GuzzleHttp\Client;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Contracts\Config\Repository;
 use Upaid\SmsVerification\Traits\CallbackTrait;
+use Illuminate\Contracts\Foundation\Application;
+use Upaid\SmsVerification\Components\StatusMapper;
 use Upaid\SmsVerification\Contracts\SmsManagerInterface;
 use Upaid\SmsVerification\Services\CacheManagement\SmsCache;
 use Upaid\SmsVerification\Services\CacheManagement\LockCache;
@@ -53,7 +58,16 @@ class SmsCodeVerificationServiceProvider extends ServiceProvider
             $bindings[MessageSenderInterface::class] = DummyMessageSender::class;
         } else {
             $bindings[CodeGeneratorInterface::class] = NumericSmsCodeGenerator::class;
-            $bindings[MessageSenderInterface::class] = SmsApiMessageSender::class;
+
+            $this->app->bind(MessageSenderInterface::class, function($app) {
+                /** @var Application $app */
+                return new SmsApiMessageSender(
+                    $app->make(Repository::class),
+                    $app->make(Client::class),
+                    $app->make(StatusMapper::class),
+                    App::getLocale()
+                );
+            });
         }
 
         foreach ($bindings as $abstract => $concrete) {
@@ -80,7 +94,8 @@ class SmsCodeVerificationServiceProvider extends ServiceProvider
 
     protected function shouldUseDummyServices(): bool
     {
-        return $this->executeCallback(config('sms_verification.callbacks.dummy_services'), config('sms_verification.dummy_services_environments'));
+        return $this->executeCallback(config('sms_verification.callbacks.dummy_services'), config('sms_verification.dummy_services_environments'),
+            config('sms_verification.force_use_real_services'));
     }
 
 }
