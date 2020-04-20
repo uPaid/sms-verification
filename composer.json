@@ -3,7 +3,7 @@
     "description": "This package provides a convenient tool for sending and verifying SMS codes in different flows. Works only with Laravel framework",
     "type": "library",
     "license": "MIT",
-    "version": "0.1.6",
+    "version": "0.1.8",
     "minimum-stability": "stable",
     "homepage": "https://github.com/uPaid/sms-verification",
     "require": {
