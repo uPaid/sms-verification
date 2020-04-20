@@ -9,8 +9,8 @@
     "require": {
         "php": ">=7.0.0",
         "guzzlehttp/guzzle": "^6.2",
-        "illuminate/support": "5.6.*",
-        "illuminate/translation": "5.6.*",
+        "illuminate/support": "^5.6 || ^6.0",
+        "illuminate/translation": "^5.6 || ^6.0",
         "upaid/contextual-keys": "1.*",
         "psr/log": "^1.0"
     },
