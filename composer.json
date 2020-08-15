@@ -3,14 +3,14 @@
     "description": "This package provides a convenient tool for sending and verifying SMS codes in different flows. Works only with Laravel framework",
     "type": "library",
     "license": "MIT",
-    "version": "0.1.8",
+    "version": "0.1.9",
     "minimum-stability": "stable",
     "homepage": "https://github.com/uPaid/sms-verification",
     "require": {
         "php": ">=7.0.0",
         "guzzlehttp/guzzle": "^6.2",
-        "illuminate/support": "^5.6 || ^6.0",
-        "illuminate/translation": "^5.6 || ^6.0",
+        "illuminate/support": "^5.6 || ^6.0 || ^7.0",
+        "illuminate/translation": "^5.6 || ^6.0 || ^7.0",
         "upaid/contextual-keys": "1.*",
         "psr/log": "^1.0"
     },
